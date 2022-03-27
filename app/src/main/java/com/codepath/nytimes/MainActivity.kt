@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.codepath.nytimes.R
 import com.codepath.nytimes.ui.books.BestSellerBooksFragment
 import com.codepath.nytimes.ui.home.HomeFragment
 import com.codepath.nytimes.ui.search.ArticleResultFragment
@@ -34,8 +33,8 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.action_home -> fragment = homeFragment
                 R.id.action_best_selling_books -> fragment = bestSellerBooksFragment
-                R.id.action_search_articles -> fragment = homeFragment
-                R.id.action_settings -> fragment = homeFragment
+                R.id.action_search_articles -> fragment = articleResultFragment
+                R.id.action_settings -> fragment = settingsFragment
 
                 else -> {  // set default selection
                     bottomNavigationView.selectedItemId = R.id.action_home
