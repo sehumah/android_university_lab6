@@ -11,10 +11,10 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/action_best_seller_books"
+        android:id="@+id/action_best_selling_books"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_menu_book_24"
-        android:title="Best Seller Books"
+        android:title="Best Selling Books"
         app:showAsAction="ifRoom"/>
 
     <item
