@@ -11,33 +11,40 @@ import com.codepath.nytimes.ui.settings.SettingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+
+    // define fragments
+    private val homeFragment: Fragment = HomeFragment()
+    private val bestSellerBooksFragment: Fragment = BestSellerBooksFragment()
+    private val articleResultFragment: Fragment = ArticleResultFragment()
+    private val settingsFragment: Fragment = SettingsFragment()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        // define var to manage fragments
-        val fragmentManager: FragmentManager = supportFragmentManager
-
-        // define fragments
-        val homeFragment: Fragment = HomeFragment()
-        val bestSellerBooksFragment: Fragment = BestSellerBooksFragment()
-        val articleResultFragment: Fragment = ArticleResultFragment()
-        val settingsFragment: Fragment = SettingsFragment()
 
         // define var to hold the bottom navigation view
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation_view)
 
         // handle navigation selection
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            val fragmentManager: FragmentManager = supportFragmentManager
             lateinit var fragment: Fragment
             when (item.itemId) {
-                R.id.action_home -> fragment = homeFragment
-                R.id.action_best_selling_books -> fragment = bestSellerBooksFragment
-                R.id.action_search_articles -> fragment = articleResultFragment
-                R.id.action_settings -> fragment = settingsFragment
-
+                R.id.action_bottom_nav_home -> {
+                    fragment = homeFragment
+                }
+                R.id.action_bottom_nav_best_selling_books -> {
+                    fragment = bestSellerBooksFragment
+                }
+                R.id.action_bottom_nav_search_articles -> {
+                    fragment = articleResultFragment
+                }
+                R.id.action_bottom_nav_settings -> {
+                    fragment = settingsFragment
+                }
                 else -> {  // set default selection
-                    bottomNavigationView.selectedItemId = R.id.action_home
+                    bottomNavigationView.selectedItemId = R.id.action_bottom_nav_home
                 }
             }
 
