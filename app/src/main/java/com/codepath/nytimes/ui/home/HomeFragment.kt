@@ -1,6 +1,8 @@
 package com.codepath.nytimes.ui.home
 
+import androidx.fragment.app.Fragment
 
-class HomeFragment {
+
+class HomeFragment : Fragment() {
 
 }
