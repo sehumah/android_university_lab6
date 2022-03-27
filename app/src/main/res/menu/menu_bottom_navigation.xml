@@ -4,28 +4,28 @@
 
 <!--    search articles, settings-->
     <item
-        android:id="@+id/action_home"
+        android:id="@+id/action_bottom_nav_home"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_home_24"
         android:title="Home"
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/action_best_selling_books"
+        android:id="@+id/action_bottom_nav_best_selling_books"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_menu_book_24"
         android:title="Best Selling Books"
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/action_search_articles"
+        android:id="@+id/action_bottom_nav_search_articles"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_search_24"
         android:title="Search Articles"
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_bottom_nav_settings"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_settings_24"
         android:title="Settings"
