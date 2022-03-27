@@ -101,3 +101,7 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+# ignore secrets file
+app/src/main/res/values/secrets.xml
+
