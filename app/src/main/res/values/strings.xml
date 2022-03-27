@@ -17,4 +17,6 @@
     <string name="action_bar_books">NY Times Bestselling Books</string>
     <string name="action_bar_search">NY Times Article Search</string>
 
+    <string name="API_KEY">@string/SECRET_API_KEY</string>
+
 </resources>
