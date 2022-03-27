@@ -2,6 +2,7 @@ package com.codepath.nytimes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.codepath.nytimes.ui.books.BestSellerBooksFragment
@@ -53,5 +54,12 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+    }
+
+    // add menu items to the action bar
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // inflate the menu; this adds items to the action bar if it is present
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
     }
 }
