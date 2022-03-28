@@ -6,15 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.core.widget.ContentLoadingProgressBar
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.codepath.nytimes.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codepath.nytimes.networking.CallbackResponse
 import com.codepath.nytimes.models.Article
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
 /**
@@ -23,18 +21,21 @@ import androidx.fragment.app.Fragment
  *
  * interface.
  */
-class ArticleResultFragment
+
+
+class ArticleResultFragment : Fragment() {
 /**
  * Mandatory empty constructor for the fragment manager to instantiate the
  * fragment (e.g. upon screen orientation changes).
  */
-    : Fragment() {
+
     private val client = NYTimesApiClient()
     private var recyclerView: RecyclerView? = null
     private var progressSpinner: ContentLoadingProgressBar? = null
     private var savedQuery: String? = null
     private var scrollListener: EndlessRecyclerViewScrollListener? = null
-    var adapter = MyArticleResultRecyclerViewAdapter()
+    private var adapter = MyArticleResultRecyclerViewAdapter()
+
     override fun onPrepareOptionsMenu(menu: Menu) {
         // TODO (checkpoint #4): Uncomment this code when you implement the search menu
 //        SearchView item = (SearchView) menu.findItem(R.id.action_search).getActionView();
@@ -54,7 +55,9 @@ class ArticleResultFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)  // this line ensures that the menu shows up
     }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -77,6 +80,13 @@ class ArticleResultFragment
         localRecyclerView.addOnScrollListener(scrollListener!!)
         activity!!.title = getString(R.string.action_bar_search)
         return view
+    }
+
+    // add the menu search item to the action bar
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        // inflate the menu; this adds items to the action bar if it is present
+        inflater.inflate(R.menu.menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onAttach(context: Context) {
