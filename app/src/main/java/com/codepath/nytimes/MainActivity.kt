@@ -2,7 +2,6 @@ package com.codepath.nytimes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.codepath.nytimes.ui.books.BestSellerBooksFragment
@@ -11,23 +10,30 @@ import com.codepath.nytimes.ui.search.ArticleResultFragment
 import com.codepath.nytimes.ui.settings.SettingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+
+private const val HOME_FRAGMENT_TAG = "home"
+private const val BEST_SELLER_BOOKS_FRAGMENT_TAG = "best seller books"
+private const val ARTICLES_RESULT_FRAGMENT_TAG = "articles"
+private const val SETTINGS_FRAGMENT_TAG = "settings"
+
 class MainActivity : AppCompatActivity() {
 
     // define fragments
-    private val homeFragment: Fragment = HomeFragment()
-    private val bestSellerBooksFragment: Fragment = BestSellerBooksFragment()
-    private val articleResultFragment: Fragment = ArticleResultFragment()
-    private val settingsFragment: Fragment = SettingsFragment()
+    private var homeFragment: Fragment = HomeFragment()
+    private var bestSellerBooksFragment: Fragment = BestSellerBooksFragment()
+    private var articleResultFragment: Fragment = ArticleResultFragment()
+    private var settingsFragment: Fragment = SettingsFragment()
+    private lateinit var bottomNavigationView: BottomNavigationView  // declare var to hold the bottom navigation view
+    private val SELECTED_ITEM_KEY = "SomeValueToSave"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // define var to hold the bottom navigation view
-        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation_view)
+        bottomNavigationView = findViewById(R.id.bottom_navigation_view)
 
-        // handle navigation selection
+        // handle bottom navigation selection/clicks
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             val fragmentManager: FragmentManager = supportFragmentManager
             lateinit var fragment: Fragment
@@ -56,12 +62,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    /*
-    // add menu items to the action bar
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        // inflate the menu; this adds items to the action bar if it is present
-        menuInflater.inflate(R.menu.menu, menu)
-        return true
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(SELECTED_ITEM_KEY, bottomNavigationView.selectedItemId)
+        super.onSaveInstanceState(outState)
     }
-    */
 }
