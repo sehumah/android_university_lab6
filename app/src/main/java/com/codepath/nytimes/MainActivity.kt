@@ -11,11 +11,6 @@ import com.codepath.nytimes.ui.settings.SettingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
-private const val HOME_FRAGMENT_TAG = "home"
-private const val BEST_SELLER_BOOKS_FRAGMENT_TAG = "best seller books"
-private const val ARTICLES_RESULT_FRAGMENT_TAG = "articles"
-private const val SETTINGS_FRAGMENT_TAG = "settings"
-
 class MainActivity : AppCompatActivity() {
 
     // define fragments
