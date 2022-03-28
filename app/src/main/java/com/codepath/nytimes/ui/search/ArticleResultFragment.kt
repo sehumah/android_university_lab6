@@ -37,6 +37,10 @@ class ArticleResultFragment : Fragment() {
     private var scrollListener: EndlessRecyclerViewScrollListener? = null
     private var adapter = MyArticleResultRecyclerViewAdapter()
 
+    // for saving and restoring fragment state
+    private var someStateValue = 0
+    private val SOME_VALUE_KEY = "someValueToSave"
+
     override fun onPrepareOptionsMenu(menu: Menu) {
         // add a hook to check when the search bar has been selected
         val menuSearchItem: SearchView = menu.findItem(R.id.menu_action_search).actionView as SearchView
@@ -52,19 +56,23 @@ class ArticleResultFragment : Fragment() {
                 return true
             }
         })
-
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)  // this line ensures that the menu shows up
+        retainInstance = true  // retain the instance of this fragment when user leaves this screen
     }
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_article_result_list, container, false)
+
+        if (savedInstanceState != null) {
+            someStateValue = savedInstanceState.getInt(SOME_VALUE_KEY)
+            // do something with the value if needed
+        }
+
         val localRecyclerView = view.findViewById<RecyclerView>(R.id.list)
         recyclerView = localRecyclerView
         progressSpinner = view.findViewById(R.id.progress)
@@ -91,6 +99,14 @@ class ArticleResultFragment : Fragment() {
         inflater.inflate(R.menu.menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
+
+
+    // below method fires when a configuration change occurs and fragment needs to save state
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(SOME_VALUE_KEY, someStateValue)
+        super.onSaveInstanceState(outState)
+    }
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
